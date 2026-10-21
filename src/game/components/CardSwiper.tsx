@@ -1,4 +1,4 @@
-﻿import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import type { GameCard, CardChoice } from '../types';
 
 interface CardSwiperProps {
@@ -291,9 +291,8 @@ export const CardSwiper: React.FC<CardSwiperProps> = ({
             padding: '12px 14px',
             borderRadius: '12px',
             border: '1px solid #ef4444',
-            background: 'rgba(239, 68, 68, 0.08)',
-            color: '#fca5a5',
             background: 'rgba(239, 68, 68, 0.15)',
+            color: '#fca5a5',
             cursor: 'pointer',
             fontWeight: 700,
             fontSize: '14px',
@@ -318,9 +317,8 @@ export const CardSwiper: React.FC<CardSwiperProps> = ({
             padding: '12px 14px',
             borderRadius: '12px',
             border: '1px solid #10b981',
-            background: 'rgba(16, 185, 129, 0.08)',
-            color: '#6ee7b7',
             background: 'rgba(16, 185, 129, 0.15)',
+            color: '#6ee7b7',
             cursor: 'pointer',
             fontWeight: 700,
             fontSize: '14px',
