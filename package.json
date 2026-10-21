@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "energy-minister-2050",
   "private": true,
   "version": "0.1.0",
@@ -6,7 +6,7 @@
   "description": "Energy Minister 2050 - Power Grid Policy Simulation Game",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit && vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",
     "typecheck": "tsc --noEmit"

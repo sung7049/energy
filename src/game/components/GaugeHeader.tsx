@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import type { CardChoice } from '../types';
 
 interface GaugeHeaderProps {
@@ -114,10 +114,10 @@ export const GaugeHeader: React.FC<GaugeHeaderProps> = ({
             />
 
             <div style={{ fontSize: '24px', marginBottom: '4px' }}>{g.icon}</div>
-            <div style={{ fontSize: '12px', fontWeight: 600, color: 'var(--text-muted)' }}>
+            <div style={{ fontSize: '12px', fontWeight: 600, color: '#94a3b8' }}>
               {g.name}
             </div>
-            <div style={{ fontSize: '13px', fontWeight: 'bold', margin: '2px 0 6px 0' }}>
+            <div style={{ fontSize: '13px', fontWeight: 'bold', margin: '2px 0 6px 0', color: '#f0f6fc' }}>
               {g.value}
             </div>
 
@@ -126,7 +126,7 @@ export const GaugeHeader: React.FC<GaugeHeaderProps> = ({
               style={{
                 width: '100%',
                 height: '8px',
-                background: 'var(--bg-input, #e2e8f0)',
+                background: 'rgba(255, 255, 255, 0.1)',
                 borderRadius: '4px',
                 overflow: 'hidden',
               }}

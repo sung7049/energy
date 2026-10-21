@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+﻿import React, { useState, useRef, useEffect, useCallback } from 'react';
 import type { GameCard, CardChoice } from '../types';
 
 interface CardSwiperProps {
@@ -171,7 +171,7 @@ export const CardSwiper: React.FC<CardSwiperProps> = ({
           width: '100%',
           minHeight: '380px',
           background: 'var(--bg-card, #ffffff)',
-          border: '2px solid var(--border-color, #e2e8f0)',
+          border: '2px solid var(--border-color, #30363d)',
           borderRadius: '24px',
           boxShadow: isDragging
             ? '0 20px 40px rgba(0, 0, 0, 0.2)'
@@ -217,14 +217,14 @@ export const CardSwiper: React.FC<CardSwiperProps> = ({
             width: '96px',
             height: '96px',
             borderRadius: '50%',
-            background: 'var(--bg-input, #f1f5f9)',
+            background: '#21262d',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             fontSize: '52px',
             marginBottom: '16px',
             boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.06)',
-            border: '2px solid var(--border-color, #e2e8f0)',
+            border: '2px solid var(--border-color, #30363d)',
           }}
         >
           {card.avatar}
@@ -238,6 +238,7 @@ export const CardSwiper: React.FC<CardSwiperProps> = ({
             textAlign: 'center',
             margin: '0 0 16px 0',
             lineHeight: 1.3,
+            color: '#ffffff',
           }}
         >
           {card.title}
@@ -248,7 +249,7 @@ export const CardSwiper: React.FC<CardSwiperProps> = ({
           style={{
             fontSize: '15px',
             lineHeight: 1.6,
-            color: 'var(--text-color, #1e293b)',
+            color: '#e2e8f0',
             textAlign: 'center',
             flex: 1,
             margin: '0 0 16px 0',
@@ -261,9 +262,9 @@ export const CardSwiper: React.FC<CardSwiperProps> = ({
         <div
           style={{
             fontSize: '12px',
-            color: 'var(--text-muted)',
+            color: '#94a3b8',
             textAlign: 'center',
-            borderTop: '1px dashed var(--border-color)',
+            borderTop: '1px dashed var(--border-color, #30363d)',
             paddingTop: '12px',
             width: '100%',
           }}
@@ -291,7 +292,8 @@ export const CardSwiper: React.FC<CardSwiperProps> = ({
             borderRadius: '12px',
             border: '1px solid #ef4444',
             background: 'rgba(239, 68, 68, 0.08)',
-            color: '#b91c1c',
+            color: '#fca5a5',
+            background: 'rgba(239, 68, 68, 0.15)',
             cursor: 'pointer',
             fontWeight: 700,
             fontSize: '14px',
@@ -317,7 +319,8 @@ export const CardSwiper: React.FC<CardSwiperProps> = ({
             borderRadius: '12px',
             border: '1px solid #10b981',
             background: 'rgba(16, 185, 129, 0.08)',
-            color: '#047857',
+            color: '#6ee7b7',
+            background: 'rgba(16, 185, 129, 0.15)',
             cursor: 'pointer',
             fontWeight: 700,
             fontSize: '14px',

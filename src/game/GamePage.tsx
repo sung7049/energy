@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from 'react';
+﻿import React, { useState, useMemo, useCallback } from 'react';
 import {
   DEFAULT_CONFIG,
   createInitialState,
@@ -165,10 +165,10 @@ export const GamePage: React.FC<GamePageProps> = ({ onGoToLab }) => {
         }}
       >
         <div>
-          <h1 style={{ fontSize: '22px', fontWeight: 900, margin: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <h1 style={{ fontSize: '22px', fontWeight: 900, margin: 0, color: '#ffffff', display: 'flex', alignItems: 'center', gap: '8px' }}>
             <span>⚡</span> 에너지 장관 2050
           </h1>
-          <p style={{ margin: '4px 0 0 0', fontSize: '13px', color: 'var(--text-muted)' }}>
+          <p style={{ margin: '4px 0 0 0', fontSize: '13px', color: '#94a3b8' }}>
             정책 결정을 내려 탄소중립과 전력 공급 안정을 동시에 달성하세요!
           </p>
         </div>
@@ -182,7 +182,9 @@ export const GamePage: React.FC<GamePageProps> = ({ onGoToLab }) => {
               borderRadius: '8px',
               background: 'var(--bg-card)',
               border: '1px solid var(--border-color)',
-              color: 'var(--text-muted)',
+              color: '#cbd5e1',
+              background: '#21262d',
+              border: '1px solid #30363d',
               cursor: 'pointer',
               fontSize: '12px',
               fontWeight: 600,
@@ -233,7 +235,7 @@ export const GamePage: React.FC<GamePageProps> = ({ onGoToLab }) => {
           style={{
             height: '6px',
             width: '100%',
-            background: 'var(--bg-input, #e2e8f0)',
+            background: 'rgba(255, 255, 255, 0.1)',
             borderRadius: '3px',
             overflow: 'hidden',
           }}
