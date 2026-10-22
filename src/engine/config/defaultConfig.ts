@@ -94,12 +94,12 @@ export const DEFAULT_CONFIG: SimConfig = {
   initialFleet: {
     cohorts: 5,
     remainingLifeYears: {
-      solar: [15, 25],
+      solar: [20, 30],
       wind: [15, 25],
-      nuclear: [20, 50],
-      coal: [10, 30],
-      lng: [15, 30],
-      ess: [8, 15],
+      nuclear: [25, 55],
+      coal: [15, 35],
+      lng: [20, 35],
+      ess: [12, 20],
     },
   },
   applyRetirement: true,

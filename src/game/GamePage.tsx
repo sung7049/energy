@@ -95,12 +95,12 @@ export const GamePage: React.FC<GamePageProps> = ({ onGoToLab }) => {
         return;
       }
 
-      if (yearResult.unservedGWh > 1000) {
+      if (yearResult.unservedGWh > 6000) {
         setGameOverReason({
           type: 'blackout',
-          title: '국가 대정전(블랙아웃) 참사로 인한 경질',
+          title: '국가 대정전(광역 블랙아웃) 참사로 인한 경질',
           description:
-            '연간 1,000GWh 이상의 치명적인 전력 공급 결손이 발생하여 산업이 마비되고 국가 비상사태가 선포되었습니다.',
+            '연간 6,000GWh 이상의 대규모 전력 공급 결손이 발생하여 전국 산업망이 마비되고 국가 비상사태가 선포되었습니다.',
         });
         setIsGameEnded(true);
         return;
@@ -180,8 +180,6 @@ export const GamePage: React.FC<GamePageProps> = ({ onGoToLab }) => {
             style={{
               padding: '8px 12px',
               borderRadius: '8px',
-              background: 'var(--bg-card)',
-              border: '1px solid var(--border-color)',
               color: '#cbd5e1',
               background: '#21262d',
               border: '1px solid #30363d',

@@ -35,11 +35,11 @@ export const GAME_CARDS: GameCard[] = [
       '서해안에 3GW 규모의 해상풍력 단지를 착공할 계획입니다. 완공까지 3년이 소요되며 대규모 투자비가 들지만, 겨울철과 야간에도 청정 전력을 생산할 수 있습니다.',
     targetYear: 2027,
     leftChoice: {
-      text: '풍력 3GW 사업 승인',
+      text: '풍력 4GW 사업 승인',
       subtext: '대규모 투자를 단행해 바람을 잡습니다.',
       policyId: 'wind_3gw',
       indicators: { budget: -1, approval: 1, grid: 1, environment: 1 },
-      explanation: '3년 후 풍력 3GW가 가동되어 겨울철 수요와 무탄소 전력에 기여합니다.',
+      explanation: '3년 후 풍력 4GW가 가동되어 겨울철 수요와 무탄소 전력에 기여합니다.',
     },
     rightChoice: {
       text: '어민 갈등 고려해 보류',
@@ -52,18 +52,18 @@ export const GAME_CARDS: GameCard[] = [
   // 3. 2028년: 신규 대형 원자력 발전소 건설 허가
   {
     id: 'nuclear_expansion_debate',
-    title: '신형 원자로 2기 건설 허가',
+    title: '신형 원전 3GW 건설 허가',
     department: '원자력발전협회 회장',
     avatar: '⚛️',
     description:
-      '안정적인 기저 전력과 탄소 감축을 위해 2GW급 원전을 착공해야 합니다. 건설에 7년이 걸리고 대규모 공사비가 들지만, 완공 후에는 값싸고 배출 없는 전력을 24시간 공급합니다.',
+      '안정적인 기저 전력과 탄소 감축을 위해 3GW급 원전을 착공해야 합니다. 건설에 7년이 걸리고 대규모 공사비가 들지만, 완공 후에는 값싸고 배출 없는 전력을 24시간 공급합니다.',
     targetYear: 2028,
     leftChoice: {
-      text: '원전 2GW 착공 허가',
+      text: '원전 3GW 착공 허가',
       subtext: '7년 뒤 가동될 기저 전원을 구축합니다.',
       policyId: 'nuclear_2gw',
       indicators: { budget: -1, approval: -1, grid: 1, environment: 1 },
-      explanation: '7년 후 원전 2GW가 완공되어 안정적인 무탄소 전력을 공급합니다.',
+      explanation: '7년 후 원전 3GW가 완공되어 안정적인 무탄소 전력을 공급합니다.',
     },
     rightChoice: {
       text: '주민 반대 우려로 불허',
@@ -80,10 +80,10 @@ export const GAME_CARDS: GameCard[] = [
     department: '전력망운영센터장',
     avatar: '🔋',
     description:
-      '봄철 맑은 날 정오에 태양광 발전이 전력 수요를 초과하여 계통 불안정 위험이 있습니다. 10GWh 대용량 ESS(배터리)를 설치하여 잉여 전력을 저장할 것을 건의합니다.',
+      '봄철 맑은 날 정오에 태양광 발전이 전력 수요를 초과하여 계통 불안정 위험이 있습니다. 16GWh 대용량 ESS(배터리)를 설치하여 잉여 전력을 저장할 것을 건의합니다.',
     targetYear: 2029,
     leftChoice: {
-      text: 'ESS 10GWh 긴급 구축',
+      text: 'ESS 16GWh 긴급 구축',
       subtext: '남는 전기를 모아 저녁 피크에 방전합니다.',
       policyId: 'ess_10gwh',
       indicators: { budget: -1, approval: 1, grid: 1, environment: 1 },
@@ -104,14 +104,14 @@ export const GAME_CARDS: GameCard[] = [
     department: '산업통상전략관',
     avatar: '🖥️',
     description:
-      '글로벌 첨단 AI 데이터센터가 대거 입주하면서 전력 수요가 급증하고 있습니다! 즉각적인 공급력 확보를 위해 LNG 복합발전 2GW를 확충할지, 산업 절전·효율 개선으로 대응할지 결정해야 합니다.',
+      '글로벌 첨단 AI 데이터센터가 대거 입주하면서 전력 수요가 급증하고 있습니다! 즉각적인 공급력 확보를 위해 LNG 복합발전 3GW를 확충할지, 산업 절전·효율 개선으로 대응할지 결정해야 합니다.',
     targetYear: 2030,
     leftChoice: {
-      text: 'LNG 복합 2GW 증설',
+      text: 'LNG 복합 3GW 증설',
       subtext: '빠른 기동과 확실한 피크 대응을 택합니다.',
       policyId: 'lng_2gw',
       indicators: { budget: -1, approval: 1, grid: 1, environment: -1 },
-      explanation: '3년 후 LNG 2GW가 추가되어 전력 공급이 안정화되지만 가스 배출이 늘어납니다.',
+      explanation: '2년 후 LNG 3GW가 추가되어 전력 공급이 안정화되지만 가스 배출이 늘어납니다.',
     },
     rightChoice: {
       text: '스마트 에너지 효율화',
@@ -149,18 +149,18 @@ export const GAME_CARDS: GameCard[] = [
   // 7. 2032년: 영농형 및 지붕 태양광 대확산
   {
     id: 'distributed_solar_boom',
-    title: '영농형·산단 지붕 태양광 5GW 프로젝트',
+    title: '영농형·산단 지붕 태양광 8GW 프로젝트',
     department: '농림축산에너지협력관',
     avatar: '☀️',
     description:
-      '모듈 가격이 대폭 하락하여 경제성이 크게 개선되었습니다. 농지와 산업단지 지붕을 활용해 분산형 태양광 5GW를 집중 설치하자는 제안이 올라왔습니다. 공기는 단 1년입니다.',
+      '모듈 가격이 대폭 하락하여 경제성이 크게 개선되었습니다. 농지와 산업단지 지붕을 활용해 분산형 태양광 8GW를 집중 설치하자는 제안이 올라왔습니다. 공기는 단 1년입니다.',
     targetYear: 2032,
     leftChoice: {
-      text: '태양광 5GW 대규모 승인',
+      text: '태양광 8GW 대규모 승인',
       subtext: '1년 만에 청정 발전용량을 대폭 확충합니다.',
       policyId: 'solar_5gw',
       indicators: { budget: -1, approval: 1, grid: 0, environment: 1 },
-      explanation: '태양광 5GW가 바로 다음 해 가동을 시작해 낮 시간 화석 발전을 밀어냅니다.',
+      explanation: '태양광 8GW가 바로 다음 해 가동을 시작해 낮 시간 화석 발전을 밀어냅니다.',
     },
     rightChoice: {
       text: '경관·산림 훼손 방지 우선',
@@ -224,14 +224,14 @@ export const GAME_CARDS: GameCard[] = [
   // 10. 2035년: 해상풍력 2차 확장과 계통 연계
   {
     id: 'offshore_wind_phase2',
-    title: '동해 부유식 해상풍력 3GW 사업',
+    title: '동해 부유식 해상풍력 4GW 사업',
     department: '해양에너지개발공사',
     avatar: '🌊',
     description:
-      '동해안의 깊은 바다에 부유식 해상풍력 3GW를 건설하는 첨단 사업입니다. 바람의 질이 좋아 높은 이용률을 기대할 수 있으나 고난도 해상 송전선로 연결이 필수입니다.',
+      '동해안의 깊은 바다에 부유식 해상풍력 4GW를 건설하는 첨단 사업입니다. 바람의 질이 좋아 높은 이용률을 기대할 수 있으나 고난도 해상 송전선로 연결이 필수입니다.',
     targetYear: 2035,
     leftChoice: {
-      text: '부유식 풍력 3GW 추진',
+      text: '부유식 풍력 4GW 추진',
       subtext: '미래 핵심 해상풍력 기술을 선점합니다.',
       policyId: 'wind_3gw',
       indicators: { budget: -1, approval: 1, grid: 1, environment: 1 },
@@ -252,10 +252,10 @@ export const GAME_CARDS: GameCard[] = [
     department: '전력거래소 이사장',
     avatar: '🔌',
     description:
-      '태양광과 풍력이 급증하여 낮 시간 버려지는 전력(출력제어)이 연간 수 TWh에 달하고 있습니다! 10GWh ESS를 추가로 설치하여 계통 낭비를 막아야 합니다.',
+      '태양광과 풍력이 급증하여 낮 시간 버려지는 전력(출력제어)이 연간 수 TWh에 달하고 있습니다! 16GWh ESS를 추가로 설치하여 계통 낭비를 막아야 합니다.',
     targetYear: 2036,
     leftChoice: {
-      text: 'ESS 10GWh 추가 증설',
+      text: 'ESS 16GWh 추가 증설',
       subtext: '저장 설비를 늘려 버려지는 전기를 구조합니다.',
       policyId: 'ess_10gwh',
       indicators: { budget: -1, approval: 1, grid: 1, environment: 1 },
@@ -272,18 +272,18 @@ export const GAME_CARDS: GameCard[] = [
   // 12. 2037년: 무탄소 기저 전원과 원전 계속운전 / 신규 건설
   {
     id: 'nuclear_clean_baseload',
-    title: '무탄소 기저전원 원자력 2GW 추가',
+    title: '무탄소 기저전원 원자력 3GW 추가',
     department: '원자력학회 이사장',
     avatar: '⚛️',
     description:
-      '2040년대 석탄 발전의 완전 퇴역에 대비하여 무탄소 기저 전원 2GW를 선제 착공해야 합니다. 7년의 건설 기간을 고려하면 지금이 마지막 골든타임입니다.',
+      '2040년대 석탄 발전의 완전 퇴역에 대비하여 무탄소 기저 전원 3GW를 선제 착공해야 합니다. 7년의 7년 건설 기간을 고려하면 지금이 마지막 골든타임입니다.',
     targetYear: 2037,
     leftChoice: {
-      text: '원전 2GW 착공 승인',
+      text: '원전 3GW 착공 승인',
       subtext: '2044년 완공을 목표로 기저 공급을 보강합니다.',
       policyId: 'nuclear_2gw',
       indicators: { budget: -1, approval: -1, grid: 1, environment: 1 },
-      explanation: '7년 뒤 가동될 2GW 원전 건설이 시작되어 미래의 대정전을 예방합니다.',
+      explanation: '7년 뒤 가동될 3GW 원전 건설이 시작되어 미래의 대정전을 예방합니다.',
     },
     rightChoice: {
       text: '재생에너지 100% 경로 집중',
@@ -327,11 +327,11 @@ export const GAME_CARDS: GameCard[] = [
       '바람이 불지 않고 비가 쏟아지는 혹한기 며칠간 계통 붕괴 위험이 있습니다. 15분 만에 최대 출력으로 가동할 수 있는 유연성 LNG 복합 2GW가 절실합니다.',
     targetYear: 2039,
     leftChoice: {
-      text: '유연성 LNG 2GW 건설',
+      text: '유연성 LNG 3GW 건설',
       subtext: '비상 정전을 막기 위한 든든한 백업을 마련합니다.',
       policyId: 'lng_2gw',
       indicators: { budget: -1, approval: 0, grid: 1, environment: -1 },
-      explanation: '3년 후 LNG 2GW가 추가되어 비상시 급전 능력이 강화됩니다.',
+      explanation: '2년 후 LNG 3GW가 추가되어 비상시 급전 능력이 강화됩니다.',
     },
     rightChoice: {
       text: '수요반응과 ESS로만 버티기',
@@ -348,14 +348,14 @@ export const GAME_CARDS: GameCard[] = [
     department: '시민에너지협동조합 연합',
     avatar: '☀️',
     description:
-      '국민들이 십시일반 참여하는 이익공유형 태양광 5GW 프로젝트입니다. 지역 주민에게 배당을 지급하여 수용성을 획기적으로 높이고 재생에너지를 신속 보급합니다.',
+      '국민들이 십시일반 참여하는 이익공유형 태양광 8GW 프로젝트입니다. 지역 주민에게 배당을 지급하여 수용성을 획기적으로 높이고 재생에너지를 신속 보급합니다.',
     targetYear: 2040,
     leftChoice: {
-      text: '국민 참여 태양광 5GW 승인',
+      text: '국민 참여 태양광 8GW 승인',
       subtext: '수용성을 확보하며 태양광을 추가합니다.',
       policyId: 'solar_5gw',
       indicators: { budget: -1, approval: 1, grid: 0, environment: 1 },
-      explanation: '1년 만에 태양광 5GW가 가동되어 주간 탄소 배출을 획기적으로 줄입니다.',
+      explanation: '1년 만에 태양광 8GW가 가동되어 주간 탄소 배출을 획기적으로 줄입니다.',
     },
     rightChoice: {
       text: '송전망 혼잡 우려로 반려',
@@ -416,14 +416,14 @@ export const GAME_CARDS: GameCard[] = [
   // 18. 2043년: 해상풍력 4차 확대
   {
     id: 'wind_expansion_2043',
-    title: '남해안 청정 해상풍력 3GW 추가 착공',
+    title: '남해안 청정 해상풍력 4GW 추가 착공',
     department: '남해안광역개발청장',
     avatar: '🌬️',
     description:
       '기술 혁신으로 풍력 터빈 용량이 기당 15MW로 거대화되었습니다. 남해안 바람길을 활용한 3GW 풍력 단지를 구축해 야간 및 사계절 무탄소 전력을 확충합시다.',
     targetYear: 2043,
     leftChoice: {
-      text: '초대형 풍력 3GW 착공',
+      text: '초대형 풍력 4GW 착공',
       subtext: '대형 터빈 기술을 결합해 청정 바람을 담습니다.',
       policyId: 'wind_3gw',
       indicators: { budget: -1, approval: 1, grid: 1, environment: 1 },
@@ -440,14 +440,14 @@ export const GAME_CARDS: GameCard[] = [
   // 19. 2044년: 계통 장주기 에너지 저장장치(ESS)
   {
     id: 'long_duration_ess',
-    title: '장주기 ESS 10GWh 추가 보급',
+    title: '장주기 ESS 16GWh 추가 보급',
     department: '에너지기술연구원장',
     avatar: '🔋',
     description:
       '재생에너지 비중이 70%에 육박하면서 날씨가 흐린 날에도 며칠간 버틸 수 있는 저장장치가 필요합니다. 10GWh 대용량 저장 설비를 확충하여 계통 복원력을 극대화합시다.',
     targetYear: 2044,
     leftChoice: {
-      text: '장주기 ESS 10GWh 구축',
+      text: '장주기 ESS 16GWh 구축',
       subtext: '미래형 무탄소 전력망의 든든한 저수지를 만듭니다.',
       policyId: 'ess_10gwh',
       indicators: { budget: -1, approval: 1, grid: 1, environment: 1 },
@@ -496,7 +496,7 @@ export const GAME_CARDS: GameCard[] = [
       '장관님! 지난 1년간 심각한 전력 미공급 사태가 발생하여 산업체 조업 중단과 국민들의 비난이 빗발치고 있습니다! 즉시 긴급 공급력 확충을 결단해야 합니다!',
     condition: (_state, lastResult) => (lastResult?.unservedGWh ?? 0) > 10,
     leftChoice: {
-      text: '긴급 LNG 2GW 급행 건설',
+      text: '긴급 LNG 3GW 급행 건설',
       subtext: '비상 발전설비를 3년 내로 전력망에 투입합니다.',
       policyId: 'lng_2gw',
       indicators: { budget: -1, approval: 1, grid: 1, environment: -1 },
@@ -521,7 +521,7 @@ export const GAME_CARDS: GameCard[] = [
       '대한민국의 전력 부문 온실가스 배출이 여전히 줄지 않아 수출 주력 품목에 천문학적인 탄소 관세가 부과될 위기입니다! 즉각적인 친환경 전환 조치가 요구됩니다.',
     condition: (_state, lastResult) => (lastResult?.emissionsMt ?? 0) > 120,
     leftChoice: {
-      text: '태양광 5GW 긴급 보급',
+      text: '태양광 8GW 긴급 보급',
       subtext: '1년 만에 가동되는 태양광으로 화석 발전을 줄입니다.',
       policyId: 'solar_5gw',
       indicators: { budget: -1, approval: 1, grid: 0, environment: 1 },
@@ -627,11 +627,11 @@ export function selectCardForYear(
     avatar: '⚖️',
     description: `${year}년도 국가 에너지 수급과 탄소중립 로드맵 이행을 위한 정책 방향을 선택해주세요.`,
     leftChoice: {
-      text: '태양광 5GW 및 청정망 보급',
+      text: '태양광 8GW 및 청정망 보급',
       subtext: '재생에너지 확충에 속도를 냅니다.',
       policyId: 'solar_5gw',
       indicators: { budget: -1, approval: 1, grid: 0, environment: 1 },
-      explanation: '태양광 5GW가 추가되어 탄소 감축에 기여합니다.',
+      explanation: '태양광 8GW가 추가되어 탄소 감축에 기여합니다.',
     },
     rightChoice: {
       text: '에너지 절감 및 효율 혁신',

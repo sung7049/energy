@@ -11,7 +11,7 @@ export const DEFAULT_POLICIES: Record<PolicyId, PolicyDefinition> = {
     name: '태양광 5GW 건설',
     description: '태양광 설비 5 GW 추가. 낮 시간에만 발전하며 계절별 일사량에 따라 출력이 달라짐.',
     constructionYears: 1,
-    effect: { kind: 'addCapacity', tech: 'solar', gw: 5 },
+    effect: { kind: 'addCapacity', tech: 'solar', gw: 8 },
     interactions: [
       '낮 시간 잔여수요를 줄여 석탄·LNG 발전과 배출을 줄일 수 있음',
       '봄·가을 낮에 잉여가 생기면 출력제어가 늘어날 수 있음',
@@ -24,7 +24,7 @@ export const DEFAULT_POLICIES: Record<PolicyId, PolicyDefinition> = {
     name: '풍력 3GW 건설',
     description: '풍력 설비 3 GW 추가. 풍속-출력곡선(시동·정격·차단 풍속)에 따라 발전.',
     constructionYears: 3,
-    effect: { kind: 'addCapacity', tech: 'wind', gw: 3 },
+    effect: { kind: 'addCapacity', tech: 'wind', gw: 4 },
     interactions: [
       '겨울철 풍속이 높아 겨울 수요 대응에 기여',
       '태양광과 발전 시간대가 달라 상호 보완 가능',
@@ -35,7 +35,7 @@ export const DEFAULT_POLICIES: Record<PolicyId, PolicyDefinition> = {
     name: '원자력 2GW 건설',
     description: '원자력 2 GW 추가. 건설 기간(7년) 동안 발전량 0, 완공 후 기저 발전.',
     constructionYears: 7,
-    effect: { kind: 'addCapacity', tech: 'nuclear', gw: 2 },
+    effect: { kind: 'addCapacity', tech: 'nuclear', gw: 3 },
     interactions: [
       '최소출력 제약 때문에 태양광이 많으면 낮 시간 출력제어를 키울 수 있음',
       '석탄 폐쇄 후 기저 공급 공백을 메울 수 있음 (완공 이후)',
@@ -56,8 +56,8 @@ export const DEFAULT_POLICIES: Record<PolicyId, PolicyDefinition> = {
     id: 'lng_2gw',
     name: 'LNG 발전소 2GW 건설',
     description: 'LNG 복합 2 GW 추가. 빠른 출력 조절, 석탄보다 낮은 배출계수.',
-    constructionYears: 3,
-    effect: { kind: 'addCapacity', tech: 'lng', gw: 2 },
+    constructionYears: 2,
+    effect: { kind: 'addCapacity', tech: 'lng', gw: 3 },
     interactions: [
       '피크 시간 공급 안정성 향상',
       '실제 발전량은 급전순위(변동비+탄소가격)에 따라 결정되어 설비만 늘고 발전은 적을 수 있음',
@@ -68,7 +68,7 @@ export const DEFAULT_POLICIES: Record<PolicyId, PolicyDefinition> = {
     name: 'ESS 10GWh 설치',
     description: '에너지저장장치 10 GWh / 2.5 GW (4시간형) 설치. 에너지를 생산하지 않고 이동만 함.',
     constructionYears: 1,
-    effect: { kind: 'addStorage', gwh: 10, gw: 2.5 },
+    effect: { kind: 'addStorage', gwh: 16, gw: 4 },
     interactions: [
       '충전할 잉여 전력이 있어야 효과가 있음 (태양광·풍력 과잉 시간)',
       '방전이 필요한 시간대(저녁 피크·공급 부족)가 있어야 가치가 있음',
