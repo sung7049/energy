@@ -4,16 +4,20 @@ import { TECH_LABEL } from '../../engine';
 
 interface YearSummaryModalProps {
   result: YearResult;
+  prevApproval?: number;
   choiceExplanation: string;
   onNextYear: () => void;
 }
 
 export const YearSummaryModal: React.FC<YearSummaryModalProps> = ({
   result,
+  prevApproval,
   choiceExplanation,
   onNextYear,
 }) => {
   const totalGenTWh = Object.values(result.generationTWh).reduce((a, b) => a + b, 0);
+  const approvalDiff =
+    prevApproval !== undefined ? Math.round(result.socialAcceptance - prevApproval) : 0;
 
   return (
     <div
@@ -119,42 +123,65 @@ export const YearSummaryModal: React.FC<YearSummaryModalProps> = ({
         )}
 
         {/* 핵심 통계 그리드 */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '10px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px' }}>
           <div
             style={{
-              background: 'var(--bg-input, #f1f5f9)',
+              background: 'var(--bg-input, #21262d)',
               padding: '10px',
               borderRadius: '10px',
               textAlign: 'center',
             }}
           >
-            <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>연간 온실가스</div>
+            <div style={{ fontSize: '11px', color: '#94a3b8' }}>국민 지지율 변화</div>
+            <div
+              style={{
+                fontSize: '16px',
+                fontWeight: 800,
+                marginTop: '2px',
+                color: approvalDiff > 0 ? '#10b981' : approvalDiff < 0 ? '#ef4444' : '#3b82f6',
+              }}
+            >
+              {result.socialAcceptance.toFixed(0)}%{' '}
+              <span style={{ fontSize: '13px' }}>
+                ({approvalDiff > 0 ? `+${approvalDiff}` : approvalDiff}%p)
+              </span>
+            </div>
+          </div>
+          <div
+            style={{
+              background: 'var(--bg-input, #21262d)',
+              padding: '10px',
+              borderRadius: '10px',
+              textAlign: 'center',
+            }}
+          >
+            <div style={{ fontSize: '11px', color: '#94a3b8' }}>연간 온실가스</div>
             <div style={{ fontSize: '16px', fontWeight: 800, marginTop: '2px', color: '#10b981' }}>
               {result.emissionsMt.toFixed(1)} Mt
             </div>
           </div>
           <div
             style={{
-              background: 'var(--bg-input, #f1f5f9)',
+              background: 'var(--bg-input, #21262d)',
               padding: '10px',
               borderRadius: '10px',
               textAlign: 'center',
             }}
           >
-            <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>총 공급 전력량</div>
-            <div style={{ fontSize: '16px', fontWeight: 800, marginTop: '2px' }}>
+            <div style={{ fontSize: '11px', color: '#94a3b8' }}>총 공급 전력량</div>
+            <div style={{ fontSize: '16px', fontWeight: 800, marginTop: '2px', color: '#f0f6fc' }}>
               {result.servedTWh.toFixed(1)} TWh
             </div>
           </div>
           <div
             style={{
-              background: 'var(--bg-input, #f1f5f9)',
+              background: 'var(--bg-input, #21262d)',
               padding: '10px',
               borderRadius: '10px',
               textAlign: 'center',
             }}
           >
-            <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>출력제어(잉여 버림)</div>
+            <div style={{ fontSize: '11px', color: '#94a3b8' }}>출력제어(잉여 버림)</div>
             <div style={{ fontSize: '16px', fontWeight: 800, marginTop: '2px', color: '#eab308' }}>
               {(result.curtailmentTWh.solar + result.curtailmentTWh.wind).toFixed(1)} TWh
             </div>

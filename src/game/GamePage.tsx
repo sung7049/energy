@@ -27,6 +27,7 @@ export const GamePage: React.FC<GamePageProps> = ({ onGoToLab }) => {
   // 연도별 선택된 정책 및 결과 기록
   const [lastYearResult, setLastYearResult] = useState<YearResult | null>(null);
   const [lastChoiceExplanation, setLastChoiceExplanation] = useState<string>('');
+  const [prevApproval, setPrevApproval] = useState<number>(DEFAULT_CONFIG.initial.socialAcceptance);
   const [showSummaryModal, setShowSummaryModal] = useState<boolean>(false);
 
   // 게임 종료 사유
@@ -50,6 +51,9 @@ export const GamePage: React.FC<GamePageProps> = ({ onGoToLab }) => {
   // 카드 선택 처리
   const handleChoose = useCallback(
     (choice: CardChoice, _direction: 'left' | 'right') => {
+      const prevApp = simState.socialAcceptance;
+      setPrevApproval(prevApp);
+
       // 1. 상태 복제
       let nextState = structuredClone(simState);
 
@@ -58,21 +62,39 @@ export const GamePage: React.FC<GamePageProps> = ({ onGoToLab }) => {
         nextState = applyPolicy(nextState, choice.policyId);
       }
 
-      // 3. 특수 보정 (예산 및 지지율 직접 가감)
+      // 3. 예산 직접 가감 반영
       if (choice.budgetDeltaEok) {
         nextState.budget += choice.budgetDeltaEok;
-      }
-      if (choice.approvalDelta) {
-        nextState.socialAcceptance = Math.max(
-          0,
-          Math.min(100, nextState.socialAcceptance + choice.approvalDelta),
-        );
       }
 
       // 4. 엔진 1년 전진 시뮬레이션 (물리 계산 수행)
       const step = stepYear(nextState);
       const yearResult = step.result;
       const updatedState = step.state;
+
+      // 5. 국민 지지율(socialAcceptance) 산정:
+      // 선택지의 정치적 여론 효과(approvalDelta 또는 indicators.approval * 5) + 물리적 계통 효과 결합
+      const engineDelta = updatedState.socialAcceptance - prevApp;
+      const choiceOpinionDelta = choice.approvalDelta ?? choice.indicators.approval * 5;
+      let finalApproval = prevApp + choiceOpinionDelta + engineDelta * 0.4;
+
+      // 선택지 인디케이터(초록/빨강 도트)와 실제 증감 방향의 인과성 보장
+      if (choice.indicators.approval < 0) {
+        // 지지율 하락 선택지(빨간불)를 고른 경우 반드시 지지율이 하락하도록 보장
+        const minDrop = choice.approvalDelta ? Math.abs(choice.approvalDelta) * 0.7 : 3;
+        finalApproval = Math.min(prevApp - minDrop, finalApproval);
+      } else if (choice.indicators.approval > 0 && yearResult.unservedGWh === 0) {
+        // 정전이 없는 상태에서 지지율 상승 선택지(초록불)를 고른 경우 반드시 지지율이 상승하도록 보장
+        const minRise = choice.approvalDelta ? Math.abs(choice.approvalDelta) * 0.7 : 3;
+        finalApproval = Math.max(prevApp + minRise, finalApproval);
+      }
+
+      finalApproval = Math.round(Math.max(0, Math.min(100, finalApproval)));
+      updatedState.socialAcceptance = finalApproval;
+      yearResult.socialAcceptance = finalApproval;
+      if (updatedState.history.length > 0) {
+        updatedState.history[updatedState.history.length - 1].socialAcceptance = finalApproval;
+      }
 
       // 사용한 카드 등록
       setUsedCardIds((prev) => new Set(prev).add(currentCard.id));
@@ -137,6 +159,7 @@ export const GamePage: React.FC<GamePageProps> = ({ onGoToLab }) => {
     setSimState(createInitialState(DEFAULT_CONFIG, 42, 'deterministic'));
     setLastYearResult(null);
     setLastChoiceExplanation('');
+    setPrevApproval(DEFAULT_CONFIG.initial.socialAcceptance);
     setShowSummaryModal(false);
     setGameOverReason(null);
     setIsGameEnded(false);
@@ -274,6 +297,7 @@ export const GamePage: React.FC<GamePageProps> = ({ onGoToLab }) => {
       {showSummaryModal && lastYearResult && (
         <YearSummaryModal
           result={lastYearResult}
+          prevApproval={prevApproval}
           choiceExplanation={lastChoiceExplanation}
           onNextYear={handleNextYear}
         />

@@ -246,35 +246,42 @@ export function stepYear(
   const servedTWh = gwhToTWh(totals.servedGWh);
   const totalDemandTWh = gwhToTWh(totals.demandGWh);
   const unservedRate = totalDemandTWh > 0 ? totals.unservedGWh / totals.demandGWh : 0;
+  // 당해 연도 건설 투자비(현금흐름)가 아닌 연간화 시스템 원가(systemAnnual)를 기준으로 전기요금 단가 산정
   const avgCostWonPerKWh =
-    servedTWh > 0 ? (totalCash * 1e8) / (servedTWh * 1e9) : 0;
+    servedTWh > 0 ? (systemAnnual * 1e8) / (servedTWh * 1e9) : 0;
 
   // 기준 대비 변화량 및 요인별 수용성 영향 산정:
-  // (1) 기준선 회복 (평상시 baseline으로의 회귀 경향: 30% 속도로 점진적 회복)
-  let acceptance = state.socialAcceptance + (config.acceptance.baseline - state.socialAcceptance) * config.acceptance.recoveryRate;
+  // (1) 기준선 회복 (평상시 baseline으로의 완만한 회귀 경향)
+  let acceptance =
+    state.socialAcceptance +
+    (config.acceptance.baseline - state.socialAcceptance) * (config.acceptance.recoveryRate * 0.4);
 
-  // (2) 전력 공급 부족에 따른 감점 (연간 미공급 비율에 비례: 5% 부족 시 약 6~8점, 10% 부족 시 15점, 최대 30점 감점)
-  const unservedPenalty = Math.min(30, unservedRate * 150);
+  // (2) 전력 공급 부족에 따른 감점 (연간 미공급 비율에 비례, 최대 30점 감점)
+  const unservedPenalty = Math.min(30, unservedRate * 150 + (totals.unservedGWh > 10 ? 3 : 0));
   acceptance -= unservedPenalty;
 
-  // (3) 전기요금/공급비용 부담 (급격한 단기 폭등 완충)
-  const prevAvgCost = state.history.length > 0 ? state.history[state.history.length - 1].avgCostWonPerKWh : 150;
+  // (3) 전기요금/공급비용 부담 (연간화 원가 기준, 첫해는 변동 0으로 시작)
+  const prevAvgCost =
+    state.history.length > 0 ? state.history[state.history.length - 1].avgCostWonPerKWh : avgCostWonPerKWh;
   const rawCostChangePct = prevAvgCost > 0 ? ((avgCostWonPerKWh - prevAvgCost) / prevAvgCost) * 100 : 0;
-  const costChangePct = Math.max(-20, Math.min(20, rawCostChangePct));
+  const costChangePct = Math.max(-15, Math.min(15, rawCostChangePct));
   acceptance -= costChangePct * config.acceptance.costWeightPerPct;
 
   // (4) 탄소 배출 감소에 따른 환경적 수용성 효과 (감소 시 가점)
-  const prevEmissions = state.history.length > 0 ? state.history[state.history.length - 1].emissionsMt : (totals.emissionsT / 1e6);
-  const rawEmissionChangePct = prevEmissions > 0 ? ((prevEmissions - (totals.emissionsT / 1e6)) / prevEmissions) * 100 : 0;
-  const emissionChangePct = Math.max(-20, Math.min(20, rawEmissionChangePct));
+  const currentEmissionsMt = totals.emissionsT / 1e6;
+  const prevEmissions =
+    state.history.length > 0 ? state.history[state.history.length - 1].emissionsMt : currentEmissionsMt;
+  const rawEmissionChangePct =
+    prevEmissions > 0 ? ((prevEmissions - currentEmissionsMt) / prevEmissions) * 100 : 0;
+  const emissionChangePct = Math.max(-15, Math.min(15, rawEmissionChangePct));
   acceptance += emissionChangePct * config.acceptance.emissionWeightPerPct;
 
-  // (5) 대규모 발전소/송전망 신규 착공에 따른 지역사회 갈등 (NIMBY)
-  const activeConstructionGW = state.pipeline.reduce((acc, p) => {
-    if (p.effect.kind === 'addCapacity') return acc + p.effect.gw;
+  // (5) 당해 연도 신규 발전소 착공에 따른 지역사회 갈등 (NIMBY)
+  const newConstructionGW = state.pipeline.reduce((acc, p) => {
+    if (p.startYear === currentYear && p.effect.kind === 'addCapacity') return acc + p.effect.gw;
     return acc;
   }, 0);
-  const localConflictPenalty = Math.min(8, activeConstructionGW * 0.08);
+  const localConflictPenalty = Math.min(5, newConstructionGW * 0.25);
   acceptance -= localConflictPenalty;
 
   // 0 ~ 100 범위 엄격 유지
